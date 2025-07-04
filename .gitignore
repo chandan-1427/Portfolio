@@ -1,0 +1,86 @@
+# ========================
+# Core Dependencies
+# ========================
+node_modules/
+.pnp/
+.pnp.js
+
+# ========================
+# Build Outputs
+# ========================
+dist/
+build/
+.cache/
+.next/
+out/
+
+# ========================
+# Coverage & Testing
+# ========================
+coverage/
+*.lcov
+
+# ========================
+# Environment Variables
+# ========================
+.env
+.env.*
+!.env.example
+
+# ========================
+# System & IDEs
+# ========================
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# ========================
+# Logs & Debug
+# ========================
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ========================
+# Misc Artifacts
+# ========================
+*.tgz
+*.zip
+*.rar
+
+# ========================
+# OS/Explorer junk
+# ========================
+Desktop.ini
+ehthumbs.db
+Icon?
+$RECYCLE.BIN/
+
+# ========================
+# Media Files (Optional: prevents Git bloat)
+# ========================
+*.mp4
+*.avi
+*.mov
+*.webm
+*.mkv
+*.psd
+*.ai
+*.eps
+*.xcf
+*.exe
+*.apk
+*.iso
+
+# ========================
+# Backend (if exists)
+# ========================
+server/node_modules/
+server/.env
+server/logs/

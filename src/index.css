@@ -1,0 +1,141 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* -------------------------------------- */
+/* --- Base Styles and Navbar UX Fixes --- */
+/* -------------------------------------- */
+
+/* Set a default font and background for the body */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f8fafc; /* Light background for consistency */
+}
+
+/* For dark mode, ensure body background adapts if you have a dark mode toggle */
+.dark body {
+  background-color: #0c0c0c; /* Example dark background */
+}
+
+
+/* Prevent content from hiding behind a fixed navbar */
+/* Adjust this value to match your navbar's actual height (e.g., 80px as suggested) */
+body {
+  padding-top: 80px;
+}
+
+/* Styles for code snippets */
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* -------------------------------------- */
+/* --- Component-Specific Animations --- */
+/* -------------------------------------- */
+
+/* ✅ Fade-in Animation (Fallback if not using tailwind.config.js for custom animations) */
+/* It's often better to extend Tailwind's theme for animations if possible,
+   but this direct CSS approach works too. */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* -------------------------------------- */
+/* --- Skills Section Specific Styles --- */
+/* -------------------------------------- */
+
+/* Custom utility for dynamic border color based on CSS variable */
+/* This directly uses the CSS variable --skill-color which is set onMouseEnter in JS */
+.group:hover {
+  border-color: var(--skill-color, theme('colors.transparent')) !important; /* Fallback to transparent */
+}
+
+/* Global gradient overlay for the section */
+.skills-section-gradient-overlay {
+  position: relative;
+}
+
+.skills-section-gradient-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.05) 0%, transparent 70%); /* Light blue radial */
+  pointer-events: none;
+  z-index: 0;
+}
+
+.dark .skills-section-gradient-overlay::before {
+  background: radial-gradient(circle at 50% 50%, rgba(147, 51, 234, 0.05) 0%, transparent 70%); /* Purple radial for dark mode */
+}
+
+/* --- Blob Animations --- */
+/* Slightly varied animations for more organic movement */
+@keyframes floatOne {
+  0% { transform: translate(0, 0) scale(1); opacity: 0.2; }
+  25% { transform: translate(20px, 40px) scale(1.05); opacity: 0.25; }
+  50% { transform: translate(-10px, 15px) scale(0.98); opacity: 0.18; }
+  75% { transform: translate(30px, -20px) scale(1.03); opacity: 0.22; }
+  100% { transform: translate(0, 0) scale(1); opacity: 0.2; }
+}
+
+@keyframes floatTwo {
+  0% { transform: translate(0, 0) scale(1); opacity: 0.2; }
+  25% { transform: translate(-30px, -20px) scale(1.03); opacity: 0.25; }
+  50% { transform: translate(15px, -5px) scale(0.95); opacity: 0.18; }
+  75% { transform: translate(-20px, 30px) scale(1.01); opacity: 0.22; }
+  100% { transform: translate(0, 0) scale(1); opacity: 0.2; }
+}
+
+@keyframes floatThree {
+  0% { transform: translate(0, 0) scale(1); opacity: 0.1; }
+  25% { transform: translate(10px, -40px) scale(1.07); opacity: 0.12; }
+  50% { transform: translate(-20px, 20px) scale(0.99); opacity: 0.08; }
+  75% { transform: translate(5px, -10px) scale(1.05); opacity: 0.11; }
+  100% { transform: translate(0, 0) scale(1); opacity: 0.1; }
+}
+
+@keyframes floatFour {
+  0% { transform: translate(0, 0) scale(1); opacity: 0.15; }
+  25% { transform: translate(-25px, 10px) scale(1.02); opacity: 0.18; }
+  50% { transform: translate(5px, -30px) scale(0.97); opacity: 0.12; }
+  75% { transform: translate(15px, 5px) scale(1.01); opacity: 0.16; }
+  100% { transform: translate(0, 0) scale(1); opacity: 0.15; }
+}
+
+@keyframes floatFive {
+  0% { transform: translate(0, 0) scale(1); opacity: 0.1; }
+  25% { transform: translate(30px, -10px) scale(1.04); opacity: 0.12; }
+  50% { transform: translate(-5px, 25px) scale(0.96); opacity: 0.09; }
+  75% { transform: translate(-10px, -5px) scale(1.03); opacity: 0.11; }
+  100% { transform: translate(0, 0) scale(1); opacity: 0.1; }
+}
+
+.animate-float-one { animation: floatOne 20s ease-in-out infinite alternate; }
+.animate-float-two { animation: floatTwo 22s ease-in-out infinite alternate; }
+.animate-float-three { animation: floatThree 18s ease-in-out infinite alternate; }
+.animate-float-four { animation: floatFour 24s ease-in-out infinite alternate; }
+.animate-float-five { animation: floatFive 21s ease-in-out infinite alternate; }
+
+/* Reduce animations for users with reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .animate-float-one, .animate-float-two, .animate-float-three, .animate-float-four, .animate-float-five {
+    animation: none !important;
+  }
+}
