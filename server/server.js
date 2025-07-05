@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 5000;
 const allowedOrigins = [
   "http://localhost:3000",
   "http://localhost:5173",
-  "https://portfolio-delta-tan-75.vercel.app/"
+  "https://portfolio-delta-tan-75.vercel.app",
 ];
 
 // Middleware
