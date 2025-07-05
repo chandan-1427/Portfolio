@@ -1,24 +1,27 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import contactRoutes from "./routes/contact.js"; // ✅ Make sure this file name is correct
+import contactRoutes from "./routes/contact.js";
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Allow these origins
-const allowedOrigins = ['http://localhost:3000', 'http://localhost:5173'];
+// ✅ Allow Vercel frontend & localhost
+const allowedOrigins = [
+  "http://localhost:3000",
+  "http://localhost:5173",
+  "https://portfolio-delta-tan-75.vercel.app/"
+];
 
 // Middleware
 app.use(cors({
   origin: function (origin, callback) {
-    // Allow requests with no origin (like mobile apps or curl)
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
-      callback(new Error('Not allowed by CORS'));
+      callback(new Error("Not allowed by CORS"));
     }
   },
   credentials: true,
@@ -26,10 +29,15 @@ app.use(cors({
 
 app.use(express.json());
 
-// Routes
+// ✅ Root route for Render to verify
+app.get("/", (req, res) => {
+  res.send("✅ Backend server is running");
+});
+
+// API Routes
 app.use("/api/contact", contactRoutes);
 
 // Start server
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
+  console.log(`🚀 Server running on port ${PORT}`);
 });
